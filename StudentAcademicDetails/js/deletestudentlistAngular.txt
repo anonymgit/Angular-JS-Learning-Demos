@@ -1,0 +1,35 @@
+/*		$rootScope.edit=function(Rollno)
+			{			
+						
+						$scope.Form1=$rootScope.data[Rollno];
+						$rootScope.ButtonTitle="Update Data";
+						
+						
+						if($rootScope.ButtonTitle=="Update Data")
+						{
+						
+							
+							var request = $http({
+										method: "post",
+										data: {"Name" : $scope.Form1.Name,"Rollno" : $scope.Form1.Rollno,"Physics":$scope.Form1.Physics,"Chemistry":$scope.Form1.Chemistry,"Math":$scope.Form1.Math  },
+										url: "EditStudentList.php?Rollno="+Rollno,
+										headers: { 'Content-Type': 'application/x-www-form-urlencoded'		 }
+									});
+									request.success(function (data) 
+									{
+										alert(JSON.stringify(data));
+										$rootScope.data=data.StudentList;
+										$scope.Form1="";
+										
+									});
+									request.error(function (data) 
+									{
+										
+										alert("ERROR");
+										
+									});
+						}
+						
+		
+				
+			} */

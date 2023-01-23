@@ -1,0 +1,464 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html >
+<head>
+
+<title>Student Academic details</title>
+<link href="./css/bootstrap.min.css" rel="stylesheet"/>
+ <style>
+
+.body{
+border-style:solid;
+border:5px solid #66CCFF;
+border-radius:10px;
+width:auto;
+margin:auto;
+
+padding:25px;
+height:auto;
+box-sizing: border-box;
+text-align:justify;
+}
+.text-field{
+width:200px;
+height:25px;
+border:1px solid blue;
+border-radius:5px;
+}
+.text-field:hover {
+  background-color: #f7f2f5;
+}
+.table,tr{
+
+text-align:center;
+border-collapse:collapse;
+width:100%;
+padding:15px;
+
+}
+.button{
+ height: 30px;
+  background-color:#66FFFF;
+  border-radius: 15px;
+  border: 1px solid black;
+  background-color: transparent;
+  font-size:15px;
+  font-style:italic;
+  color: #333;
+  background-image: linear-gradient(to bottom,transparent,transparent 50%,rgba(0,0,0,.04));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), inset 0 1px 0 0 rgba(255,255,255,.45), inset 0 -1px 0 0 rgba(255,255,255,.15), 0 1px 0 0 rgba(255,255,255,.15);
+  text-shadow: 0 1px rgba(255,255,255,.4);
+
+
+}
+
+.button:hover {
+  background-color: #f7f2f5;
+}
+.print-button{
+ height: 28px;
+ width:80px;
+  background-color:#FF0000;
+  border: 1px solid black;
+  font-size:15px;
+  font-style:italic;
+  color:#00FF00;
+  background-image: linear-gradient(to bottom,transparent,transparent 50%,rgba(0,0,0,.04));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), inset 0 1px 0 0 rgba(255,255,255,.45), inset 0 -1px 0 0 rgba(255,255,255,.15), 0 1px 0 0 rgba(255,255,255,.15);
+  text-shadow: 0 1px rgba(255,255,255,.4);
+
+
+}
+.print-button:hover {
+  background-color: #f7f2f5;
+}
+.division-button{
+ height: 28px;
+ width:80px;
+  background-color:#00CCFF;
+  border: 1px solid black;
+  font-size:15px;
+  color:#000000;
+  background-image: linear-gradient(to bottom,transparent,transparent 50%,rgba(0,0,0,.04));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), inset 0 1px 0 0 rgba(255,255,255,.45), inset 0 -1px 0 0 rgba(255,255,255,.15), 0 1px 0 0 rgba(255,255,255,.15);
+  text-shadow: 0 1px rgba(255,255,255,.4);
+
+
+}
+.division-button:hover {
+  background-color: #f7f2f5;
+}
+
+
+</style>
+
+<script src="./angular/1.2.0angular.min.js"></script>
+
+
+
+
+<script>
+	var app = angular.module('MyApp', []);
+	app.controller('Form_CNT', function($rootScope,$scope, $http,$filter)
+	{	
+		
+		$rootScope.data=[];
+		$rootScope.ButtonTitle="Add Data";
+		$rootScope.AddData=function()
+		{
+			
+			
+			if($rootScope.ButtonTitle=="Update Data")
+			{
+				var index=$rootScope.index;
+				var name=$scope.Form1.Name;
+				var roll=parseInt($scope.Form1.RollNo);
+				var physics=parseInt($scope.Form1.Physics);
+				var chemistry=parseInt($scope.Form1.Chemistry);
+				var math=parseInt($scope.Form1.Math);
+				var total=physics+chemistry+math;
+				var percentage=(total/300)*100;
+				
+				if(total>300)
+				{
+					alert("please check your marks!");
+				}
+				else
+				{
+					if(physics>=35)
+					{
+						if(chemistry>=35)
+						{
+							if(math>=35)
+							{
+								if(percentage>=35)
+								{ 
+									if(percentage<=45)
+									{ 
+						
+										 var division="3rd division";
+									}	
+								}
+								if(percentage>45)
+								{
+									if(percentage<=60)
+									{ 
+										division="2nd division";
+									}   
+								}
+								if(percentage>60)
+								{   
+										division="1st division";
+								}
+	 
+							}	 
+							if(math<35)
+							{
+								division= "fail";
+							}
+						}
+						if(chemistry<35)
+						{
+							division= "fail";
+						}	
+					}
+					if(physics<35)
+					{
+						division= "fail";
+					}
+					
+					
+					
+					d={"Name":name,
+					 "RollNo":roll,
+					 "Physics":physics,
+					 "Chemistry":chemistry,
+					 "Math":math,
+					 "Total":total,
+					 "Percentage":percentage,
+					 "Division":division
+					 };
+					$rootScope.data[index]=d;
+					
+				}
+				$scope.Form1="";
+				$rootScope.ButtonTitle="Add Data";
+				
+			
+			}
+			else
+			{
+				var name=$scope.Form1.Name;
+				var roll=parseInt($scope.Form1.RollNo);
+				var physics=parseInt($scope.Form1.Physics);
+				var chemistry=parseInt($scope.Form1.Chemistry);
+				var math=parseInt($scope.Form1.Math);
+				var total=physics+chemistry+math;
+				var percentage=(total/300)*100;
+			
+			
+
+				if(total>300)
+				{
+					alert("please check your marks!");
+				}
+				else
+				{
+					
+					if(physics>=35)
+					{
+						if(chemistry>=35)
+						{
+							if(math>=35)
+							{
+								if(percentage>=35)
+								{ 
+									if(percentage<=45)
+									{ 
+						
+										division="3rd division";
+									}	
+								}
+								if(percentage>45)
+								{
+									if(percentage<=60)
+									{ 
+										division="2nd division";
+									}   
+								}
+								if(percentage>60)
+								{   
+										division="1st division";
+								}
+	 
+							}	 
+							if(math<35)
+							{
+								division= "fail";
+							}
+						}
+						if(chemistry<35)
+						{
+							division= "fail";
+						}	
+					}
+					
+
+					d={"Name":name,
+					 "RollNo":roll,
+					 "Physics":physics,
+					 "Chemistry":chemistry,
+					 "Math":math,
+					 "Total":total,
+					 "Percentage":percentage,
+					 "Division":division
+					 };
+					$rootScope.data.push(d);
+				}
+				
+			}
+			$scope.Form1="";
+			
+			
+			
+		}
+		$rootScope.getGrade=function(Marks)
+		{
+			var Grade="";
+			if(Marks<35)
+			{
+				Grade= "fail";
+			}
+			if(Marks>35 && Marks<=45)
+			{
+				Grade="C";
+			}
+			else if(Marks>45 && Marks<=60)
+			{
+				Grade="B";
+			}
+			else if(Marks>60 && Marks <=100)
+			{
+				Grade="A";
+			}
+			else
+			{
+				Grade="D";
+			}
+			return(Grade);
+		}
+		$rootScope.edit=function(index)
+		{
+			
+			//alert(JSON.stringify($rootScope.data[index]));
+			
+			$scope.Form1=$rootScope.data[index];
+			$rootScope.index=index;
+			
+			$rootScope.ButtonTitle="Update Data";	
+		} 
+		$rootScope.del=function(index)
+		{
+			
+			$rootScope.data.splice(index,1);
+			
+			
+		}
+		$rootScope.FirstDivList=[];
+		$rootScope.SecondDivList=[];
+		$rootScope.ThirdDivList=[];
+		$rootScope.FirstDivUsingFilter=function()
+		{
+			$rootScope.DivList=$filter("filter")($rootScope.data,"1st division",true);
+		}
+		$rootScope.SecondDivUsingFilter=function()
+		{
+			$rootScope.DivList=$filter("filter")($rootScope.data,"2nd division",true);
+		}
+		$rootScope.ThirdDivUsingFilter=function()
+		{
+			$rootScope.DivList=$filter("filter")($rootScope.data,"3rd division",true);
+		}
+	/*	$rootScope.FirstDiv=function()
+		{
+			for(var i=0;i<$rootScope.data.length;i++)
+			{
+				
+				if($rootScope.data[i].Division=="1st division")
+				{
+					//alert(JSON.stringify($rootScope.data[i]));
+					$rootScope.FirstDivList.push($rootScope.data[i]);
+					alert(JSON.stringify($rootScope.FirstDivList));
+
+					
+				}	
+				
+			}
+			
+			
+		}
+	*/
+		
+		$rootScope.printAll=function()
+		{
+			sessionStorage.setItem("Data",JSON.stringify($rootScope.data));
+			window.open("download.html","_blank");
+		
+		}
+		
+		$rootScope.print=function(index)
+		{
+			var dt=[];
+			dt.push($rootScope.data[index]);
+			sessionStorage.setItem("Data",JSON.stringify(dt));
+			window.open("download.html","_blank");
+
+		}
+	
+		
+		
+		
+		
+
+	});
+
+
+</script>
+
+</head>
+
+<body ng-app="MyApp">
+	<div class="body">
+		<form action="#" name="Form1" ng-controller="Form_CNT" ng-model="Form1">
+		
+		<div class="form"  >
+			
+			<B>Name:</B><input  class="text-field" type="text" id="name" ng-model="Form1.Name"  />
+			<B>Roll no:</B><input  class="text-field" type="text" id="roll" ng-model="Form1.RollNo"/>
+			<B>Physics Marks:</B><input   class="text-field" type="text" id="physics" ng-model="Form1.Physics" />
+			<B>Chemistry Marks:</B><input   class="text-field" type="text" id="chemistry" ng-model="Form1.Chemistry" />
+			<B>math Marks:</B><input class="text-field" type="text" id="math" ng-model="Form1.Math" />
+			<input type="button" class="button" id="AddData" value="{{ButtonTitle}}" ng-click="AddData()" /><br /><br />
+			<B>text search:</B><input class="text-field" type="text"  ng-model="textSearch" /><br /><br />
+			
+		</div>
+		
+		<div  style="overflow-x:auto;">
+			<table border=1 class="table">
+				<tr style="background-color:#FFFF00;">
+					<td>SNo</td>
+					<td><B>Name</B></td>
+					<td><B>Rollno</B></td>
+					<td><B>Physics</B></td>
+					<td><B>chemistry</B></td>
+					<td><B>math</B></td>
+					<td><B>total</B></td>
+					<td><B>Percentage</B></td>
+					<td><B>Division</B></td>
+					<td><B>Action</B></td>
+				</tr>
+				<tr ng-repeat="x in data | filter: textSearch" style="background:{{x.Physics<35?'red': x.Chemistry<35?'red': x.Math<35 ?'red':'white'}} " >
+					<td>{{$index+1}}</td>
+					<td >{{x.Name}}</td>
+					<td>{{x.RollNo}}</td>
+					<td> {{x.Physics}} {{getGrade(x.Physics)}}</td>
+					<td>{{x.Chemistry}} {{getGrade(x.Chemistry)}}</td>
+					<td>{{x.Math}} {{getGrade(x.Math)}}</td>
+					<td>{{x.Total}}</td>
+					<td>{{x.Percentage}}</td>
+					<td >{{x.Division}}</td>
+					<td ><input type="button" class="button" id="edit" value="edit" ng-click="edit($index)" /> <input type="button" class="button" id="delete" value="delete" ng-click="del($index)" /><input type="button" class="button"  value="download" ng-click="print($index)" /></td>
+				</tr>
+				
+			</table>
+		</div>
+		</form>
+	</div>
+	<br />
+	<div style="float:right; width: 100px">
+		<input type="button" class="print-button" id="print" value="print" ng-click="printAll()" />
+	</div>
+	<div style="float:right; width: 110px">
+		<input type="button" class="division-button" id="print" value="3rd div list" ng-click="ThirdDivUsingFilter()" />
+	</div>
+	<div style="float:right; width: 120px">
+		<input type="button" class="division-button" id="print" value="2nd div list" ng-click="SecondDivUsingFilter()" />
+	</div>
+	<div style="float:right; width: 130px">
+		<input type="button" class="division-button" id="print" value="1st div list" ng-click="FirstDivUsingFilter()" />
+	</div>
+	<br /></br>
+
+	<div  style="overflow-x:auto;">
+		<table border=1 class="table">
+			<tr style="background-color:#FFFF00;">
+				<td>SNo</td>
+				<td><B>Name</B></td>
+				<td><B>Rollno</B></td>
+				<td><B>Physics</B></td>
+				<td><B>chemistry</B></td>
+				<td><B>math</B></td>
+				<td><B>total</B></td>
+				<td><B>Percentage</B></td>
+				<td><B>Division</B></td>
+				<td><B>Action</B></td>
+			</tr>
+			<tr ng-repeat="x in DivList" style="background:{{x.Physics<35?'red': x.Chemistry<35?'red': x.Math<35 ?'red':'white'}} ">
+				<td>{{$index+1}}</td>
+				<td >{{x.Name}}</td>
+				<td>{{x.RollNo}}</td>
+				<td> {{x.Physics}}</td>
+				<td>{{x.Chemistry}}</td>
+				<td>{{x.Math}}</td>
+				<td>{{x.Total}}</td>
+				<td>{{x.Percentage}}</td>
+				<td >{{x.Division}}</td>
+				<td ><input type="button" class="button" id="edit" value="edit" ng-click="edit($index)" /> <input type="button" class="button" id="delete" value="delete" ng-click="del($index)" /> <input type="button" class="button"  value="download" ng-click="print($index)" /></td>
+			</tr>
+			
+		</table>
+	</div>
+	
+	
+	
+</body>
+</html>

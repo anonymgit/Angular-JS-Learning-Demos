@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Download Ticket</title>
+<style>
+
+.body{
+border-style:solid;
+border:5px solid #66CCFF;
+border-radius:10px;
+width:auto;
+margin:auto;
+
+padding:25px;
+height:auto;
+box-sizing: border-box;
+text-align:justify;
+}
+.text-field{
+width:200px;
+height:25px;
+border:1px solid blue;
+border-radius:5px;
+}
+.text-field:hover {
+  background-color: #f7f2f5;
+}
+.table,tr{
+
+text-align:center;
+border-collapse:collapse;
+width:100%;
+padding:15px;
+
+}
+.button{
+ height: 30px;
+  background-color:#66FFFF;
+  border-radius: 15px;
+  border: 1px solid black;
+  background-color: transparent;
+  font-size:15px;
+  font-style:italic;
+  color: #333;
+  background-image: linear-gradient(to bottom,transparent,transparent 50%,rgba(0,0,0,.04));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), inset 0 1px 0 0 rgba(255,255,255,.45), inset 0 -1px 0 0 rgba(255,255,255,.15), 0 1px 0 0 rgba(255,255,255,.15);
+  text-shadow: 0 1px rgba(255,255,255,.4);
+
+
+}
+
+.button:hover {
+  background-color: #f7f2f5;
+}
+.print-button{
+ height: 28px;
+ width:80px;
+  background-color:#FF0000;
+  border: 1px solid black;
+  font-size:15px;
+  font-style:italic;
+  color:#00FF00;
+  background-image: linear-gradient(to bottom,transparent,transparent 50%,rgba(0,0,0,.04));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), inset 0 1px 0 0 rgba(255,255,255,.45), inset 0 -1px 0 0 rgba(255,255,255,.15), 0 1px 0 0 rgba(255,255,255,.15);
+  text-shadow: 0 1px rgba(255,255,255,.4);
+
+
+}
+.print-button:hover {
+  background-color: #f7f2f5;
+}
+.division-button{
+ height: 28px;
+ width:80px;
+  background-color:#00CCFF;
+  border: 1px solid black;
+  font-size:15px;
+  color:#000000;
+  background-image: linear-gradient(to bottom,transparent,transparent 50%,rgba(0,0,0,.04));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), inset 0 1px 0 0 rgba(255,255,255,.45), inset 0 -1px 0 0 rgba(255,255,255,.15), 0 1px 0 0 rgba(255,255,255,.15);
+  text-shadow: 0 1px rgba(255,255,255,.4);
+
+
+}
+.division-button:hover {
+  background-color: #f7f2f5;
+}
+
+
+</style>
+
+<script src="./angular/1.2.0angular.min.js"></script>
+<script>
+	var app = angular.module('MyApp', []);
+	app.controller('Form_CNT', function($rootScope,$scope, $http,$filter)
+	{
+		
+		$rootScope.Ticket=JSON.parse(sessionStorage.getItem("Data"));
+		$rootScope.print=function()
+		{
+			window.print("table");
+		}
+		
+		
+		
+	});
+</script>
+</head>
+
+<body ng-app="MyApp"> 
+<div ng-controller="Form_CNT" id="table">
+	<table border=1 class="table" >
+		<tr style="background-color:#FFFF00;">
+			<td>SNo</td>
+			<td><B>Passenger Name</B></td>
+			<td><B>Age</B></td>
+			<td><B>Gender</B></td>
+			<td><B>Source</B></td>
+			<td><B>Destination</B></td>
+			<td><B>total</B></td>
+			
+		</tr>
+		<tr ng-repeat="x in Ticket | filter: textSearch" >
+			<td>{{$index+1}}</td>
+			<td >{{x.PassengerName}}</td>
+			<td>{{x.Age}}</td>
+			<td> {{x.Gender}}</td>
+			<td>{{x.Source}}</td>
+			<td>{{x.Destination}}</td>
+			<td>{{x.Total}}</td>
+			
+		</tr>
+					
+	</table>
+	<div style="float:right; width: 100px">
+		<input type="button" class="print-button" id="print" value="print" ng-click="print()" />
+	</div>
+</div>
+</body>
+</html>

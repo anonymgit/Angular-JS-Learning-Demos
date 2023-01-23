@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+
+<script src="./angular/1.2.0angular.min.js"></script>
+<style>
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+.body {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+}
+
+.text-field{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+
+}
+.button{
+width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+ }
+.button:hover{
+background-color: #45a049;
+}
+
+.table,tr,td{
+border: 1px solid black;
+width:100%;
+font-size:20px;
+text-align: center;
+
+
+}
+
+</style>
+<script>
+	var app = angular.module('MyApp', []);
+	app.controller('Form_CNT', function($rootScope,$scope, $http,$filter)
+	{	
+		
+		$rootScope.gen=function()
+		{
+			
+		
+			var min=parseInt($scope.Form1.min);
+			var max=parseInt($scope.Form1.max);
+			var value=parseInt($scope.Form1.value);
+			
+			$rootScope.data=[];
+			for(var i=min; i<=max; i++)
+			{	
+				
+				d={ "number":value,
+				 "MultipleOf":i,
+				 "Value":value*i};
+				$rootScope.data.push(d);				
+			}
+			
+		
+			
+		}
+	});
+
+</script>	
+
+</head>
+
+<body ng-app="MyApp">
+
+	<div class="body">
+		<form action="#" name="Form1" ng-controller="Form_CNT" ng-model="Form1">
+		
+		<div class="text-field">
+			MIN:<input  class="text-field" type="text" id="min" ng-model="Form1.min"  /><br /></br>
+			MAX:<input  class="text-field" type="text" id="max" ng-model="Form1.max"/><br /><br />
+			VALUE:<input   class="text-field" type="text" id="value" ng-model="Form1.value" /><br /><br />
+			<input type="button" class="button" id="generate" value="generate table" ng-click="gen()" />
+			<table class="table">
+				<tr>
+					<td>number</td>
+					<td>MultipleOf</td>
+					<td>value</td>
+				</tr>
+					
+				<tr ng-repeat="x in data">
+					<td>{{x.number}}</td>
+					<td>{{x.MultipleOf}}</td>
+					<td>{{x.Value}}</td>
+				</tr>
+				
+			</table>
+			
+		</div>
+		</form>
+		
+	</div>
+
+</body>
+</html>
+ 
+
+	

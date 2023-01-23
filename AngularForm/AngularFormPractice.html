@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<script src="./angular/1.2.0angular.min.js"></script>
+<script>
+	var app = angular.module('MyApp', []);
+	app.controller('Frm1_CNT', function($rootScope,$scope, $http,$filter)
+	{
+		
+		$rootScope.Addition=function()
+		{
+			
+			
+			var x=parseInt($scope.Frm1.No1);
+			var y=parseInt($scope.Frm1.No2);
+			$scope.Frm1.Re=x+y;
+			$rootScope.data=[];
+			for(i=1;i<=10;i++)
+			{
+				d={ "Value":"N"+i};
+				$rootScope.data.push(d);
+			}
+			
+		}
+		$rootScope.Subtract=function()
+		{
+			
+			
+			var x=parseInt($scope.Frm1.No1);
+			var y=parseInt($scope.Frm1.No2);
+			$scope.Frm1.Re=x-y;
+			
+		}
+		$rootScope.Division=function()
+		{
+			
+			
+			var x=parseInt($scope.Frm1.No1);
+			var y=parseInt($scope.Frm1.No2);
+			$scope.Frm1.Re=x/y;
+			
+		}
+		$rootScope.Multiply=function()
+		{
+			
+			
+			var x=parseInt($scope.Frm1.No1);
+			var y=parseInt($scope.Frm1.No2);
+			$scope.Frm1.Re=x*y;
+			
+		}
+		
+	});		
+</script>
+</head>
+
+<body ng-app="MyApp"> 
+<div id="frm">
+	<form action="#" name="frm1" ng-controller="Frm1_CNT" ng-model="Frm1">
+		No 1 : <input type="text"  ng-model="Frm1.No1" /><br /><br />
+		No 2<input type="text"  ng-model="Frm1.No2" /><br /><br />
+		
+		<input type="button" value="+" id="Add" name="Add"  ng-click="Addition()"/>
+		<input type="button" value="-" id="Sub" name="Subtract"  ng-click="Subtract()" />
+		<input type="button" value="/" id="Divide" name="Divide" onClick="Division()"/>
+		<input type="button" value="*"  id="Multiply"name="Multiply" onClick="Multiply()" /><br /><br />
+		
+		MyResult:<label id="Re">{{Frm1.Re}}</label>
+	</form>
+	Table With all data<br />
+	<table border="1">
+		<tr>
+			<td>value</td>
+		</tr>
+			
+		<tr ng-repeat="x in data">
+			<td>{{x.Value}}</td>
+		</tr>
+		
+	</table>
+	<br />Table With limited	 data<br />
+	<table border="1">
+		<tr>
+			<td>value</td>
+		</tr>
+			
+		<tr ng-repeat="x in data | limitTo:5">
+			<td>{{x.Value}}</td>
+		</tr>
+		
+	</table>
+</div>
+</body>
+</html>

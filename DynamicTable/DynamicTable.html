@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+
+<script>
+
+function generate()
+{
+	var max=document.getElementById("max").value;
+	var min=document.getElementById("min").value;
+	alert(max);
+	alert(min);
+}
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div>
+	<form name="form1">
+	<input type="text" class="calculator-screen" id="screen" value=""  name="screen" disabled />
+	<div>
+		MAX:<input type="text" id="max"  />
+		MIN:<input type="text" id="min" />
+		VALUE:<input type="text" id="value" />
+		<input type="button" id="generate" value="generate table" onlclick="generate()" />
+	</div>
+	</form>
+</div>
+</body>
+</html>
